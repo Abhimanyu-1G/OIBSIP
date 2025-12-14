@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import (
     QLineEdit, QHeaderView, QMessageBox
 )
 from PyQt6.QtCore import Qt
-from styles import DARK_THEME
+from styles import NEW_THEME as THEME
 
 class PasswordsWindow(QMainWindow):
     def __init__(self, db):
@@ -16,7 +16,7 @@ class PasswordsWindow(QMainWindow):
     def init_ui(self):
         self.setWindowTitle("Saved Passwords")
         self.setGeometry(200, 200, 800, 600)
-        self.setStyleSheet(DARK_THEME)
+        self.setStyleSheet(THEME)
 
         main_widget = QWidget()
         self.setCentralWidget(main_widget)

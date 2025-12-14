@@ -1,88 +1,64 @@
+
 import random
 import string
 
 class PasswordGenerator:
     def __init__(self):
-        self.uppercase = string.ascii_uppercase
-        self.lowercase = string.ascii_lowercase
-        self.digits = string.digits
-        self.symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+        self.words = [
+            "apple", "banana", "cherry", "dog", "elephant", "frog", "grape",
+            "horse", "ice", "jelly", "kite", "lemon", "monkey", "noodle",
+            "orange", "penguin", "queen", "robot", "snake", "tiger", "unicorn",
+            "violin", "whale", "xylophone", "yacht", "zebra"
+        ]
 
-    def generate(self, length=12, use_upper=True, use_lower=True, use_digits=True, use_symbols=True):
-        """
-        Generates a password based on the specified criteria.
-        """
-        if not any([use_upper, use_lower, use_digits, use_symbols]):
-            return "Error: Select at least one character type."
+    def generate(self, length, use_upper, use_lower, use_digits, use_symbols):
+        chars = ""
+        if use_upper:
+            chars += string.ascii_uppercase
+        if use_lower:
+            chars += string.ascii_lowercase
+        if use_digits:
+            chars += string.digits
+        if use_symbols:
+            chars += string.punctuation
 
-        pool_upper = self.uppercase
-        pool_lower = self.lowercase
-        pool_digits = self.digits
-        pool_symbols = self.symbols
+        if not chars:
+            return "Error: Select at least one character type"
 
-        char_pool = ""
-        password = []
+        password = ''.join(random.choice(chars) for _ in range(length))
+        return password
 
-        # Ensure at least one character from each selected category is included
-        try:
-            if use_upper:
-                if not pool_upper: raise ValueError("No uppercase characters available.")
-                char_pool += pool_upper
-                password.append(random.choice(pool_upper))
-            if use_lower:
-                if not pool_lower: raise ValueError("No lowercase characters available.")
-                char_pool += pool_lower
-                password.append(random.choice(pool_lower))
-            if use_digits:
-                if not pool_digits: raise ValueError("No digits available.")
-                char_pool += pool_digits
-                password.append(random.choice(pool_digits))
-            if use_symbols:
-                if not pool_symbols: raise ValueError("No symbols available.")
-                char_pool += pool_symbols
-                password.append(random.choice(pool_symbols))
-        except ValueError as e:
-            return f"Error: {str(e)}"
-
-        if not char_pool:
-            return "Error: No characters available to generate password."
-
-        # Fill the rest of the password length
-        remaining_length = length - len(password)
-        if remaining_length > 0:
-            for _ in range(remaining_length):
-                password.append(random.choice(char_pool))
-
-        # Shuffle the password to avoid predictable patterns
-        random.shuffle(password)
-        
-        return "".join(password)
+    def generate_memorable(self, num_words=4, separator="-"):
+        password_words = random.sample(self.words, num_words)
+        return separator.join(password_words)
 
     def check_strength(self, password):
-        """
-        Returns a strength score (0-4) and a label.
-        """
+        length = len(password)
+        has_upper = any(c.isupper() for c in password)
+        has_lower = any(c.islower() for c in password)
+        has_digit = any(c.isdigit() for c in password)
+        has_symbol = any(c in string.punctuation for c in password)
+        
         score = 0
-        if len(password) >= 8:
+        if length >= 12:
+            score += 2
+        elif length >= 8:
             score += 1
-        if any(c in self.uppercase for c in password):
+
+        if has_upper:
             score += 1
-        if any(c in self.lowercase for c in password):
+        if has_lower:
             score += 1
-        if any(c in self.digits for c in password):
+        if has_digit:
             score += 1
-        if any(c in self.symbols for c in password):
+        if has_symbol:
             score += 1
-            
-        # Adjust for length
-        if len(password) >= 12:
-            score += 1
-            
-        # Cap score at 4 for simplicity in this context, or map to labels
-        # Let's do a simple mapping
-        if score < 3:
-            return "Weak", "#ff4d4d" # Red
-        elif score < 5:
-            return "Medium", "#ffa64d" # Orange
+        
+        if score >= 6:
+            return "Strong", "#89b4fa"
+        elif score >= 4:
+            return "Good", "#a6e3a1"
+        elif score >= 2:
+            return "Okay", "#fab387"
         else:
-            return "Strong", "#4dff88" # Green
+            return "Weak", "#f38ba8"

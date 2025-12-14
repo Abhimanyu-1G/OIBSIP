@@ -1,12 +1,14 @@
+
 import sys
 from PyQt6.QtWidgets import QApplication
-from gui import PasswordGeneratorApp
+from gui import ModernPasswordGeneratorApp
 
 def main():
     app = QApplication(sys.argv)
-    window = PasswordGeneratorApp()
+    window = ModernPasswordGeneratorApp()
     window.show()
     sys.exit(app.exec())
 
 if __name__ == "__main__":
     main()
+
