@@ -1,0 +1,255 @@
+/* styles.qss */
+
+/* General Window Styling */
+QMainWindow {
+    background-color: #1e1e1e; /* Dark background */
+}
+
+QWidget {
+    color: #d4d4d4; /* Light grey text */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Tab Widget Styling - will be removed */
+QTabWidget::pane {
+    border-top: 2px solid #3c3c3c;
+}
+
+QTabBar::tab {
+    background: #252526;
+    border: 1px solid #3c3c3c;
+    border-bottom: none;
+    padding: 8px 16px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background: #1e1e1e;
+    border-color: #007acc;
+    border-bottom: 2px solid #1e1e1e; /* Hides the top border of the pane */
+}
+
+QTabBar::tab:!selected:hover {
+    background: #3c3c3c;
+}
+
+/* Labels */
+QLabel {
+    font-size: 14px;
+}
+
+/* Line Edits */
+QLineEdit {
+    background-color: #252526;
+    border: 1px solid #3c3c3c;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border-color: #007acc; /* Blue border on focus */
+}
+
+/* Combo Box */
+QComboBox {
+    background-color: #252526;
+    border: 1px solid #3c3c3c;
+    padding: 8px;
+    border-radius: 4px;
+    min-width: 6em;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #3c3c3c;
+    border-left-style: solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #252526;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #252526;
+    border: 1px solid #3c3c3c;
+    selection-background-color: #007acc;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #007acc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #005f9e;
+}
+
+QPushButton:pressed {
+    background-color: #004c7d;
+}
+
+/* Specific button styling for danger actions */
+QPushButton#clear_btn, QPushButton#remove_user_btn {
+    background-color: #e67e22; /* Dark Orange */
+    color: #ffffff;
+}
+
+QPushButton#clear_btn:hover, QPushButton#remove_user_btn:hover {
+    background-color: #d35400; /* Darker Orange */
+}
+
+/* Table Widget */
+QTableWidget {
+    background-color: #252526;
+    border: 1px solid #3c3c3c;
+    gridline-color: #3c3c3c;
+}
+
+QHeaderView::section {
+    background-color: #3c3c3c;
+    padding: 4px;
+    border: 1px solid #1e1e1e;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #007acc;
+    color: #ffffff;
+}
+
+/* Scroll Bars */
+
+QScrollBar:vertical {
+
+    border: 1px solid #3c3c3c;
+
+    background: #252526;
+
+    width: 15px;
+
+    margin: 15px 0 15px 0;
+
+}
+
+
+
+QScrollBar::handle:vertical {
+
+    background: #555;
+
+    min-height: 20px;
+
+}
+
+
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+
+    height: 0px;
+
+}
+
+
+
+QScrollBar:horizontal {
+
+    border: 1px solid #3c3c3c;
+
+    background: #252526;
+
+    height: 15px;
+
+    margin: 0 15px 0 15px;
+
+}
+
+
+
+QScrollBar::handle:horizontal {
+
+    background: #555;
+
+    min-width: 20px;
+
+}
+
+
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+
+    width: 0px;
+
+}
+
+
+
+/* QMessageBox */
+
+QMessageBox {
+
+    background-color: #252526;
+
+}
+
+
+
+QMessageBox QLabel {
+
+    color: #d4d4d4;
+
+    font-size: 14px;
+
+}
+
+
+
+QMessageBox QPushButton {
+
+    background-color: #007acc;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 4px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    min-width: 80px;
+
+}
+
+
+
+QMessageBox QPushButton:hover {
+
+    background-color: #005f9e;
+
+}
+
+
+
+QMessageBox QPushButton:pressed {
+
+    background-color: #004c7d;
+
+}
